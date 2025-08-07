@@ -1,4 +1,3 @@
-// components/ui/Input/Input.module.scss
 
 .container {
   display: flex;
@@ -59,19 +58,16 @@
   }
 }
 
-// Textarea specific styles
 textarea.input {
   resize: vertical;
   min-height: 60px;
   padding: 4px 0;
 }
 
-// Focus styles
 .input:focus {
   outline: none;
 }
 
-// Dark mode support
 @media (prefers-color-scheme: dark) {
   .container {
     background-color: #1f2937;

@@ -1,13 +1,11 @@
-import WelcomeM from "@/components/WelcomeM";
+import WelcomeMessage from "@/components/WelcomeMessage";
 
 const page = () => {
-
-
 
     return (
         <div>
             this is dashboard page
-            <WelcomeM />
+            <WelcomeMessage />
         </div>
     );
 };
