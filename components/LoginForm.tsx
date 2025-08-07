@@ -8,8 +8,14 @@ import { loginSchema } from '@/validations/loginSchema';
 import { LoginFormInputs } from '@/types/forms';
 import styles from './LoginForm.module.scss';
 import Button from './Button';
+import { useLogin } from '@/hooks/useLogin';
+import Spinner from './Spinner';
+import { useRouter } from 'next/navigation';
 
 export default function LoginForm() {
+
+    const { login, loading, error } = useLogin();
+    const router = useRouter();
 
     const { register, handleSubmit, formState: { errors, isSubmitting }, clearErrors } = useForm<LoginFormInputs>({
         resolver: yupResolver(loginSchema),
@@ -18,8 +24,17 @@ export default function LoginForm() {
     });
 
     const onSubmit = async (data: LoginFormInputs) => {
-        console.log('Login data:', data);
-        //api call
+        // console.log('Login data:', data);
+
+        const response = await login();
+
+        localStorage.setItem('UserData', JSON.stringify(response));
+        const storedUser = localStorage.getItem('UserData');
+        if (storedUser)
+            console.log(JSON.parse(storedUser));
+
+        router.replace('/dashboard');
+
     };
 
     const handleInputChange = (fieldName: keyof LoginFormInputs) => {
@@ -53,13 +68,23 @@ export default function LoginForm() {
                     )}
                 </div>
             </div>
+            {loading ?
+                <Spinner />
+                :
+                <Button type="submit"
+                    className={styles.submitButton}
+                    disabled={isSubmitting}
+                >
+                    {isSubmitting ? 'Signing in...' : 'Sign In'}
+                </Button>
+            }
 
-            <Button type="submit"
-                className={styles.submitButton}
-                disabled={isSubmitting}
-            >
-                {isSubmitting ? 'Signing in...' : 'Sign In'}
-            </Button>
+            {error &&
+                <div>
+                    خطایی رخ داد دوباره تلاش کنید
+                </div>
+            }
+
         </form>
     );
 }
