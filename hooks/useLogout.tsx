@@ -8,6 +8,7 @@ export const useLogout = () => {
 
     const logout = () => {
         localStorage.removeItem('UserData') 
+        localStorage.removeItem('PhoneNumber') 
         router.replace('/auth');
     }
 

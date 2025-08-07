@@ -10,15 +10,20 @@ const WelcomeM = () => {
 
     const [fullName, setFullName] = useState<string>("");
     const [imageUrl, setImageUrl] = useState<string>("");
+    const [phoneNumber, setPhoneNumber] = useState<string>("");
     const logout = useLogout();
 
     useEffect(() => {
         const storedUser = localStorage.getItem('UserData');
+        const PhoneNumber = localStorage.getItem('PhoneNumber');
 
         if (storedUser) {
             const user = JSON.parse(storedUser);
             setFullName((user.results[0].name.first + " " + user.results[0].name.last) || "");
             setImageUrl(user.results[0].picture.medium || "");
+        }
+        if (PhoneNumber) {
+            setPhoneNumber(PhoneNumber);
         }
     }, []);
 
@@ -34,6 +39,7 @@ const WelcomeM = () => {
                 />
             )}
             <h2>👋 Welcome, {fullName}</h2>
+            <h3>{phoneNumber}</h3>
 
             <Button onClick={logout}>
                 exit

@@ -24,14 +24,11 @@ export default function LoginForm() {
     });
 
     const onSubmit = async (data: LoginFormInputs) => {
-        // console.log('Login data:', data);
 
         const response = await login();
 
         localStorage.setItem('UserData', JSON.stringify(response));
-        const storedUser = localStorage.getItem('UserData');
-        if (storedUser)
-            console.log(JSON.parse(storedUser));
+        localStorage.setItem('PhoneNumber', data.username);
 
         router.replace('/dashboard');
 
@@ -77,7 +74,7 @@ export default function LoginForm() {
 
             {error &&
                 <div>
-                    خطایی رخ داد دوباره تلاش کنید
+                    Something goes wrong! Try again.
                 </div>
             }
 
