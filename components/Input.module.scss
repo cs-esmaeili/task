@@ -1,0 +1,96 @@
+// components/ui/Input/Input.module.scss
+
+.container {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 8px;
+  border-radius: 6px;
+  padding: 4px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  border: 2px solid rgba(59, 130, 246, 0.5);
+  background-color: #f8fafc;
+  transition: all 0.2s ease;
+  
+  &:focus-within {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  }
+  
+  &.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6b7280;
+  flex-shrink: 0;
+}
+
+.title {
+  color: #374151;
+  font-weight: 500;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.input {
+  flex: 1;
+  min-width: 0;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  color: #111827;
+  
+  &::placeholder {
+    color: #9ca3af;
+  }
+  
+  &:disabled {
+    cursor: not-allowed;
+  }
+  
+  &.hasIcon {
+    padding-right: 8px;
+  }
+}
+
+// Textarea specific styles
+textarea.input {
+  resize: vertical;
+  min-height: 60px;
+  padding: 4px 0;
+}
+
+// Focus styles
+.input:focus {
+  outline: none;
+}
+
+// Dark mode support
+@media (prefers-color-scheme: dark) {
+  .container {
+    background-color: #1f2937;
+    border-color: rgba(59, 130, 246, 0.5);
+  }
+  
+  .title {
+    color: #f3f4f6;
+  }
+  
+  .icon {
+    color: #9ca3af;
+  }
+  
+  .input {
+    color: #f9fafb;
+    
+    &::placeholder {
+      color: #6b7280;
+    }
+  }
+}

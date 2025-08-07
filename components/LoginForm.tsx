@@ -1,49 +1,65 @@
 'use client';
 
 import { useForm } from 'react-hook-form';
-import styles from './LoginForm.module.scss';
 import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
-
-type LoginFormInputs = {
-    username: string;
-};
-
-// Yup schema
-const schema = yup.object({
-    username: yup.string().required('Username is required'),
-});
+import { FaUser } from "react-icons/fa";
+import Input from '@/components/Input';
+import { loginSchema } from '@/validations/loginSchema';
+import { LoginFormInputs } from '@/types/forms';
+import styles from './LoginForm.module.scss';
+import Button from './Button';
 
 export default function LoginForm() {
-    const {
-        register,
-        handleSubmit,
-        formState: { errors },
-    } = useForm<LoginFormInputs>({
-        resolver: yupResolver(schema),
+
+    const { register, handleSubmit, formState: { errors, isSubmitting }, clearErrors } = useForm<LoginFormInputs>({
+        resolver: yupResolver(loginSchema),
+        mode: 'onSubmit',
+        reValidateMode: 'onChange'
     });
 
-    const onSubmit = (data: LoginFormInputs) => {
+    const onSubmit = async (data: LoginFormInputs) => {
         console.log('Login data:', data);
+        //api call
+    };
+
+    const handleInputChange = (fieldName: keyof LoginFormInputs) => {
+        return () => {
+            if (errors[fieldName]) {
+                clearErrors(fieldName);
+            }
+        };
     };
 
     return (
         <form onSubmit={handleSubmit(onSubmit)} className={styles.formContainer}>
-            <div className={styles.inputGroup}>
-                <label htmlFor="username">Username</label>
-                <input
-                    id="username"
-                    type="text"
-                    {...register('username')}
-                />
-                {errors.username && (
-                    <p className={styles.error}>{errors.username.message}</p>
-                )}
+            <div className={styles.header}>
+                <h2>Welcome Back</h2>
+                <p>Please sign in to your account</p>
             </div>
 
-            <button type="submit" className={styles.submitButton}>
-                Login
-            </button>
+            <div className={styles.formFields}>
+                <div className={styles.fieldWrapper}>
+                    <Input
+                        icon={<FaUser />}
+                        placeholder="Enter your username"
+                        title="Username"
+                        divCssClass={errors.username ? styles.errorInput : ''}
+                        {...register('username', {
+                            onChange: handleInputChange('username')
+                        })}
+                    />
+                    {errors.username && (
+                        <p className={styles.errorMessage}>{errors.username.message}</p>
+                    )}
+                </div>
+            </div>
+
+            <Button type="submit"
+                className={styles.submitButton}
+                disabled={isSubmitting}
+            >
+                {isSubmitting ? 'Signing in...' : 'Sign In'}
+            </Button>
         </form>
     );
 }
