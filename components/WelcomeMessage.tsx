@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useLogout } from '@/hooks/useLogout'
+import styles from './WelcomeMessage.module.scss'
 import Button from './Button';
 
 const WelcomeM = () => {
@@ -20,8 +21,9 @@ const WelcomeM = () => {
 
 
     return (
-        <div>
-            <h1>Welcome, {fullName}</h1>
+        <div className={styles.container}>
+            <h2>👋 Welcome, {fullName}</h2>
+
             <Button onClick={logout}>
                 exit
             </Button>

@@ -1,4 +1,3 @@
-
 .container {
   display: flex;
   width: 100%;
@@ -8,14 +7,14 @@
   padding: 4px;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
   border: 2px solid rgba(59, 130, 246, 0.5);
-  background-color: #f8fafc;
+  background-color: transparent;
   transition: all 0.2s ease;
-  
+
   &:focus-within {
     border-color: #3b82f6;
     box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
   }
-  
+
   &.disabled {
     opacity: 0.5;
     cursor: not-allowed;
@@ -44,15 +43,15 @@
   border: none;
   background-color: transparent;
   color: #111827;
-  
+
   &::placeholder {
     color: #9ca3af;
   }
-  
+
   &:disabled {
     cursor: not-allowed;
   }
-  
+
   &.hasIcon {
     padding-right: 8px;
   }
@@ -68,25 +67,23 @@ textarea.input {
   outline: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  .container {
-    background-color: #1f2937;
-    border-color: rgba(59, 130, 246, 0.5);
-  }
-  
-  .title {
-    color: #f3f4f6;
-  }
-  
-  .icon {
-    color: #9ca3af;
-  }
-  
-  .input {
-    color: #f9fafb;
-    
-    &::placeholder {
-      color: #6b7280;
-    }
+.container {
+  background-color: #1f29372e;
+  border-color: rgba(59, 130, 246, 0.5);
+}
+
+.title {
+  color: #f3f4f6;
+}
+
+.icon {
+  color: #9ca3af;
+}
+
+.input {
+  color: #f9fafb;
+
+  &::placeholder {
+    color: #40444b;
   }
 }

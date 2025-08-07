@@ -1,4 +1,4 @@
-import styles from './Home.module.scss';
+import styles from './home.module.scss';
 import { FaHome } from "react-icons/fa";
 import Link from "next/link"
 

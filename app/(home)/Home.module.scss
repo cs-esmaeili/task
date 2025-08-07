@@ -1,3 +1,5 @@
+@import '../../styles/variables.scss';
+
 .container {
     display: flex;
     min-height: 100vh;
@@ -35,14 +37,14 @@
 }
 
 .icon {
-    color: var(--foreground);
+    color: $foreground;
     width: 100px;
     height: 100px;
 }
 
 .title {
     font-size: 2.25rem;
-    color: var(--foreground);
+    color: $foreground;
     white-space: nowrap;
 }
 
@@ -55,7 +57,7 @@
 .blurCircle1,
 .blurCircle2,
 .blurCircle3 {
-    background-color: blue;
+    background-color: $chart-3;
     border-radius: 50%;
     position: absolute;
     opacity: 0.75;
