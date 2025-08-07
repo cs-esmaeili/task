@@ -1,2 +1,6 @@
 @use './utils/mixins.scss';
 @use './utils/variables.scss';
+
+body {
+    margin: 0;
+}

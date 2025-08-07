@@ -1,0 +1,132 @@
+.container {
+    display: flex;
+    min-height: 100vh;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.box {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 10;
+}
+
+@media (min-width: 768px) {
+    .box {
+        gap: 3.125rem;
+    }
+
+    .titleWrapper {
+        flex-direction: row;
+    }
+}
+
+.titleWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: center;
+}
+
+.icon {
+    color: var(--foreground);
+    width: 100px;
+    height: 100px;
+}
+
+.title {
+    font-size: 2.25rem;
+    color: var(--foreground);
+    white-space: nowrap;
+}
+
+@media (min-width: 768px) {
+    .title {
+        font-size: 3rem;
+    }
+}
+
+.blurCircle1,
+.blurCircle2,
+.blurCircle3 {
+    background-color: blue;
+    border-radius: 50%;
+    position: absolute;
+    opacity: 0.75;
+    filter: blur(48px);
+}
+
+.blurCircle1 {
+    width: 650px;
+    height: 650px;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    animation: pulseScale1 6s ease-in-out infinite;
+}
+
+.blurCircle2 {
+    width: 550px;
+    height: 550px;
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%) scale(1);
+    animation: pulseScale2 6s ease-in-out infinite;
+}
+
+.blurCircle3 {
+    width: 550px;
+    height: 550px;
+    top: 0;
+    right: 0;
+    transform: translate(50%, -50%) scale(1);
+    animation: pulseScale3 6s ease-in-out infinite;
+}
+
+@keyframes pulseScale1 {
+
+    0%,
+    100% {
+        opacity: 0.75;
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    50% {
+        opacity: 0.6;
+        transform: translate(-50%, -50%) scale(1.25);
+    }
+}
+
+@keyframes pulseScale2 {
+
+    0%,
+    100% {
+        opacity: 0.75;
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    50% {
+        opacity: 0.6;
+        transform: translate(-50%, -50%) scale(1.25);
+    }
+}
+
+@keyframes pulseScale3 {
+
+    0%,
+    100% {
+        opacity: 0.75;
+        transform: translate(50%, -50%) scale(1);
+    }
+
+    50% {
+        opacity: 0.6;
+        transform: translate(50%, -50%) scale(1.25);
+    }
+}
